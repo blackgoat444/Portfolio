@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>杨逸伦 | Portfolio</title>
+  <style>
+    :root {
+      --bg: #f4eadc;
+      --paper: #f8f1e7;
+      --card: #fdf8f2;
+      --ink: #3b2f2a;
+      --muted: #7a6255;
+      --accent: #b95c3b;
+      --accent-deep: #8e442a;
+      --line: #ceb59f;
+      --shadow: 0 10px 30px rgba(59, 47, 42, 0.12);
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --max-width: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(185, 92, 59, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(122, 98, 85, 0.08), transparent 20%),
+        linear-gradient(180deg, #f6ecdf 0%, #f2e6d7 100%);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .grain::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.08;
+      background-image:
+        radial-gradient(#3b2f2a 0.5px, transparent 0.5px),
+        radial-gradient(#3b2f2a 0.5px, transparent 0.5px);
+      background-position: 0 0, 12px 12px;
+      background-size: 24px 24px;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      background: rgba(248, 241, 231, 0.84);
+      border-bottom: 1px solid rgba(206, 181, 159, 0.7);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      transition: 0.25s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.42);
+      color: var(--ink);
+    }
+
+    section { padding: 56px 0; }
+
+    .hero {
+      min-height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      padding: 48px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: rgba(253, 248, 242, 0.88);
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-deep);
+      margin-bottom: 12px;
+    }
+
+    h1, h2, h3, h4, p { margin: 0; }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+
+    .accent-text {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      font-size: 0.98rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--ink);
+      color: #fffaf4;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff8f2;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-deep);
+      border-color: var(--accent-deep);
+      color: #fff8f2;
+    }
+
+    .hero-notes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .note-chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(185, 92, 59, 0.08);
+      color: var(--ink);
+      border: 1px solid rgba(185, 92, 59, 0.18);
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05)), var(--paper);
+    }
+
+    .stamp {
+      align-self: flex-start;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px dashed var(--accent);
+      color: var(--accent-deep);
+      font-size: 0.92rem;
+      transform: rotate(-5deg);
+      background: rgba(185, 92, 59, 0.06);
+    }
+
+    .hero-quote {
+      font-size: 1.25rem;
+      line-height: 1.55;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.45);
+    }
+
+    .mini-label {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .mini-value { font-size: 1rem; }
+
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1.02rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .profile-card,
+    .resume-card,
+    .work-card,
+    .embed-panel {
+      padding: 28px;
+    }
+
+    .profile-card {
+      position: sticky;
+      top: 92px;
+    }
+
+    .profile-name {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .profile-role {
+      color: var(--accent-deep);
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .profile-text {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .tag-list,
+    .contact-list,
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag,
+    .contact-pill,
+    .skill-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.5);
+      font-size: 0.92rem;
+    }
+
+    .resume-card {
+      display: grid;
+      gap: 18px;
+    }
+
+    .resume-block {
+      padding-bottom: 18px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .resume-block:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .resume-block h3 {
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+    }
+
+    .resume-item + .resume-item { margin-top: 16px; }
+
+    .item-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .item-head strong { font-size: 1.02rem; }
+    .item-meta { color: var(--muted); font-size: 0.95rem; }
+
+    .resume-item ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .resume-item li + li { margin-top: 4px; }
+
+    .works-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .work-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .work-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .work-title h3 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .work-title p { color: var(--muted); }
+
+    .count-badge {
+      min-width: 56px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(185, 92, 59, 0.08);
+      border: 1px solid rgba(185, 92, 59, 0.24);
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--accent-deep);
+    }
+
+    .card-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 14px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.48);
+      transition: 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(59, 47, 42, 0.08);
+    }
+
+    .cover {
+      aspect-ratio: 4 / 5;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(185, 92, 59, 0.22), rgba(255,255,255,0.2)),
+        repeating-linear-gradient(
+          135deg,
+          rgba(59, 47, 42, 0.06),
+          rgba(59, 47, 42, 0.06) 8px,
+          transparent 8px,
+          transparent 16px
+        ),
+        #ead7c4;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 12px;
+      color: #fff8f2;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .project-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .project-info h4 {
+      font-size: 1.06rem;
+      line-height: 1.3;
+    }
+
+    .project-info p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-tag {
+      font-size: 0.82rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(59, 47, 42, 0.05);
+      border: 1px solid rgba(59, 47, 42, 0.08);
+      color: var(--muted);
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: var(--accent-deep);
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(185, 92, 59, 0.08);
+      border: 1px solid rgba(185, 92, 59, 0.18);
+      transition: 0.2s ease;
+    }
+
+    .project-link:hover {
+      background: rgba(185, 92, 59, 0.14);
+    }
+
+    .embed-panel {
+      display: grid;
+      gap: 18px;
+    }
+
+    .embed-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    .embed-head h3 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .embed-head p { color: var(--muted); }
+
+    .embed-frame {
+      width: 100%;
+      min-height: 860px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #f7f1e8;
+    }
+
+    .embed-frame iframe {
+      width: 100%;
+      height: 860px;
+      border: 0;
+      display: block;
+    }
+
+    .footer {
+      padding: 32px 0 56px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid { grid-template-columns: 1fr; }
+      .profile-card { position: static; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(var(--max-width), calc(100% - 20px)); }
+      .nav { align-items: flex-start; flex-direction: column; }
+      .hero-copy,
+      .hero-card,
+      .profile-card,
+      .resume-card,
+      .work-card,
+      .embed-panel { padding: 22px; }
+      .project-card { grid-template-columns: 1fr; }
+      .cover { aspect-ratio: 16 / 9; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .embed-frame,
+      .embed-frame iframe {
+        min-height: 70vh;
+        height: 70vh;
+      }
+    }
+  </style>
+</head>
+<body class="grain">
+  <div class="page">
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="#home">
+          <span>杨逸伦作品集</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#home">首页</a>
+          <a href="#about">个人信息</a>
+          <a href="#works">作品分区</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div class="panel hero-copy">
+            <div class="eyebrow">Hi, I’m Yang Yilun</div>
+            <h1>
+              一个更关注产品逻辑与体验温度的设计者，<br />
+              <span class="accent-text">也在尝试用 AI 把想法更快落地。</span>
+            </h1>
+            <p class="hero-lead">
+              我喜欢把模糊的想法整理成清晰的信息结构，也喜欢把需求、流程和界面之间的关系梳理明白。这个作品集会先介绍我是谁，再带你看我做过什么、正在探索什么。
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#works">看看我的作品</a>
+              <a class="btn" href="#about">先了解我</a>
+            </div>
+            <div class="hero-notes">
+              <span class="note-chip">UI / UX</span>
+              <span class="note-chip">产品思维</span>
+              <span class="note-chip">AI Vibe Coding</span>
+              <span class="note-chip">从原型到落地</span>
+            </div>
+          </div>
+
+          <aside class="panel hero-card">
+            <div class="stamp">portfolio opening page</div>
+            <p class="hero-quote">
+              “我希望做出的数字产品既有逻辑，也有一点点温度，让人愿意继续用下去。”
+            </p>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <span class="mini-label">Current Focus</span>
+                <div class="mini-value">产品设计 × AI 辅助创作</div>
+              </div>
+              <div class="mini-card">
+                <span class="mini-label">Keywords</span>
+                <div class="mini-value">交互、逻辑、叙事感</div>
+              </div>
+              <div class="mini-card">
+                <span class="mini-label">Background</span>
+                <div class="mini-value">工业设计 / 中国矿业大学</div>
+              </div>
+              <div class="mini-card">
+                <span class="mini-label">Open To</span>
+                <div class="mini-value">产品经理 / 交互设计 / UX 岗位</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">About Me</div>
+            <h2>Hi，再正式一点介绍一下我自己。</h2>
+            <p>
+              我本科是工业设计专业，后来逐渐把兴趣转向数字产品、交互体验和产品逻辑梳理。相比单纯做视觉，我更喜欢分析需求、搭建信息结构、梳理流程，并把这些内容转化成更容易被理解和使用的界面体验。
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <aside class="panel profile-card">
+              <h3 class="profile-name">杨逸伦</h3>
+              <p class="profile-role">产品经理 / 交互设计师 / AI 创作实践者</p>
+              <p class="profile-text">
+                我目前在求职方向上更偏向产品、交互与体验设计相关岗位。相比单点执行，我更关注一个产品从需求理解、逻辑梳理、原型设计到最终落地的完整过程，也在持续尝试用 AI 工具提升调研、表达和开发效率。
+              </p>
+              <div class="contact-list" style="margin-bottom: 18px;">
+                <span class="contact-pill">13225232620</span>
+                <span class="contact-pill">yangyuan40607@qq.com</span>
+                <span class="contact-pill">yyl20040607</span>
+              </div>
+              <div class="tag-list">
+                <span class="tag">Figma 原型设计</span>
+                <span class="tag">用户体验分析</span>
+                <span class="tag">需求拆解</span>
+                <span class="tag">PRD 撰写</span>
+                <span class="tag">Prompt 设计</span>
+                <span class="tag">大模型 API</span>
+              </div>
+            </aside>
+
+            <div class="panel resume-card">
+              <div class="resume-block">
+                <h3>教育经历</h3>
+                <div class="resume-item">
+                  <div class="item-head">
+                    <strong>中国矿业大学</strong>
+                    <span class="item-meta">2022.08 – 2024.07</span>
+                  </div>
+                  <div class="item-meta">本科 · 工业设计专业 · GPA 3.08</div>
+                </div>
+              </div>
+
+              <div class="resume-block">
+                <h3>实习经历</h3>
+                <div class="resume-item">
+                  <div class="item-head">
+                    <strong>山东标梵信息技术有限公司 · 实习设计助理</strong>
+                    <span class="item-meta">2025.07 – 2025.09</span>
+                  </div>
+                  <ul>
+                    <li>参与 WEB 端与小程序的 UI 原型设计，重点关注界面呈现与设计方向探索。</li>
+                    <li>与前端、技术同事协作，梳理项目逻辑，推动产品从设计到开发的衔接落地。</li>
+                    <li>结合业务和用户需求协助修改图片与文案，并输出设计想法优化用户体验。</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="resume-block">
+                <h3>项目经历</h3>
+                <div class="resume-item">
+                  <div class="item-head">
+                    <strong>齐鲁师范学院校友会小程序</strong>
+                  </div>
+                  <ul>
+                    <li>根据需求文档拆解校友管理、活动发布、信息交互等核心业务逻辑。</li>
+                    <li>使用 Figma 搭建从低保真到高保真的原型，设计符合用户习惯的导航与反馈机制。</li>
+                    <li>跟进产品从 0 到 1 的落地过程，协调开发资源并管理迭代节奏。</li>
+                  </ul>
+                </div>
+                <div class="resume-item">
+                  <div class="item-head">
+                    <strong>AI 产品痛点调研工具</strong>
+                  </div>
+                  <ul>
+                    <li>搭建基于 AI 的产品痛点分析工具，聚合 Reddit、Trustpilot 等平台评论数据。</li>
+                    <li>支持 URL 批量抓取与结构化清洗，实现单条评论级别的拆分分析。</li>
+                    <li>结合大模型自动生成问题洞察和用户痛点总结，用于产品优化与决策支持。</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="resume-block">
+                <h3>在校经历</h3>
+                <div class="resume-item">
+                  <div class="item-head">
+                    <strong>班长</strong>
+                  </div>
+                  <ul>
+                    <li>处理班级日常事务，保证班级常规运行有序进行。</li>
+                    <li>及时接收并准确传达老师的各项工作安排，保持沟通顺畅。</li>
+                  </ul>
+                </div>
+                <div class="resume-item">
+                  <div class="item-head">
+                    <strong>中国矿业大学社团联合会宣设中心副部长兼美工组组长</strong>
+                    <span class="item-meta">2023.06 – 2024.06</span>
+                  </div>
+                  <ul>
+                    <li>负责社联日常宣传海报的创意构思与设计制作。</li>
+                    <li>制定培训计划，组织组员学习设计软件与视觉表达技巧。</li>
+                  </ul>
+                </div>
+                <div class="resume-item">
+                  <div class="item-head">
+                    <strong>中国矿业大学思旗音乐社社长</strong>
+                    <span class="item-meta">2023.08 – 2024.06</span>
+                  </div>
+                  <ul>
+                    <li>独立策划音乐会、比赛等活动，统筹整体流程推进。</li>
+                    <li>对接校内外资源，完成审批、场地申请及演出合作协调。</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="resume-block">
+                <h3>技能与兴趣</h3>
+                <div class="skill-list" style="margin-bottom: 14px;">
+                  <span class="skill-pill">Figma 原型设计</span>
+                  <span class="skill-pill">用户体验分析</span>
+                  <span class="skill-pill">需求拆解</span>
+                  <span class="skill-pill">PRD 撰写</span>
+                  <span class="skill-pill">Prompt 设计</span>
+                  <span class="skill-pill">百炼 API 调用</span>
+                  <span class="skill-pill">Xmind</span>
+                  <span class="skill-pill">Office</span>
+                </div>
+                <p class="item-meta">兴趣：音乐、历史、心理学</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="works">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Works Overview</div>
+            <h2>What do u want to know?</h2>
+            <p>
+              这里我把内容分成三个方向：设计作品、AI vibe coding 和音乐创作。设计部分接入了 PDF 预览、Figma 原型嵌入与视觉作品展示，方便直接在网页内浏览。
+            </p>
+          </div>
+
+          <div class="works-layout">
+            <section class="panel work-card">
+              <div class="work-top">
+                <div class="work-title">
+                  <h3>设计作品</h3>
+                  <p>UI / UX 案例、小程序项目、官网改版与视觉设计。</p>
+                </div>
+                <div class="count-badge">01</div>
+              </div>
+
+              <div class="card-stack">
+                <article class="project-card">
+                  <div class="cover">QILU</div>
+                  <div class="project-info">
+                    <h4>齐鲁师范学院校友会小程序设计</h4>
+                    <p>围绕“身份—关系—互动—价值”构建校友平台结构，通过重构连接方式解决弱连接、低互动的问题，提升平台长期价值。</p>
+                    <div class="project-tags">
+                      <span class="project-tag">UI/UX</span>
+                      <span class="project-tag">小程序</span>
+                      <span class="project-tag">系统设计</span>
+                    </div>
+                    <div class="project-actions">
+                      <a class="project-link" href="pdfs/qilu.pdf" target="_blank">打开 PDF</a>
+                      <a class="project-link" href="https://www.figma.com/proto/0ORtd6x7fkVAwp8aY4bnFT/%E9%BD%90%E9%B2%81%E5%B8%88%E8%8C%83%E5%AD%A6%E9%99%A2%E6%A0%A1%E5%8F%8B%E4%BC%9A%E5%B0%8F%E7%A8%8B%E5%BA%8F?page-id=0%3A1&node-id=3-36542&viewport=-34413%2C-6528%2C0.43&t=RqtJy4SoS19utqwH-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A36542&show-proto-sidebar=1" target="_blank">打开原型</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="project-card">
+                  <div class="cover">TONGFANG</div>
+                  <div class="project-info">
+                    <h4>山东统防生物科技官网设计修改</h4>
+                    <p>官网改版方向项目，适合展示企业官网的信息结构优化与视觉表达调整。</p>
+                    <div class="project-tags">
+                      <span class="project-tag">官网改版</span>
+                      <span class="project-tag">Figma 原型</span>
+                    </div>
+                    <div class="project-actions">
+                      <a class="project-link" href="https://www.figma.com/proto/J7hneJGz3HR6E46xdOk2lm/%E7%BB%9F%E9%98%B2%E7%94%9F%E7%89%A9%E7%A7%91%E6%8A%80?page-id=0%3A1&node-id=151-2514&p=f&viewport=906%2C325%2C0.02&t=HBlaIyT6ixmTgIlc-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=151%3A2514" target="_blank">打开原型</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="project-card">
+                  <div class="cover">ZHONGRENYIKE</div>
+                  <div class="project-info">
+                    <h4>中仁谊科小程序设计</h4>
+                    <p>小程序设计项目，适合呈现流程梳理、页面组织与原型表达能力。</p>
+                    <div class="project-tags">
+                      <span class="project-tag">小程序</span>
+                      <span class="project-tag">Figma 原型</span>
+                    </div>
+                    <div class="project-actions">
+                      <a class="project-link" href="https://www.figma.com/proto/xKwtByHIAS6fXJD5hj2pnB/%E4%B8%AD%E4%BB%81%E8%B0%8A%E7%A7%91%E5%B0%8F%E7%A8%8B%E5%BA%8F?page-id=0%3A1&node-id=1-1743&p=f&viewport=118%2C-163%2C0.02&t=l7rct47I07FcLnH7-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A1743" target="_blank">打开原型</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="project-card">
+                  <div class="cover">JINAN</div>
+                  <div class="project-info">
+                    <h4>济南市机器人与高端装备产业协会官网修改</h4>
+                    <p>协会官网改版项目，适合展示多信息层级页面的组织、入口优化与品牌表达。</p>
+                    <div class="project-tags">
+                      <span class="project-tag">官网改版</span>
+                      <span class="project-tag">信息架构</span>
+                    </div>
+                    <div class="project-actions">
+                      <a class="project-link" href="https://www.figma.com/proto/OfTKtyNmiMseWQKppp607h/%E6%B5%8E%E5%8D%97%E5%B8%82%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8E%E9%AB%98%E7%AB%AF%E8%A3%85%E5%A4%87%E4%BA%A7%E4%B8%9A%E5%8D%8F%E4%BC%9A?page-id=0%3A1&node-id=1-10372&p=f&viewport=-314%2C-385%2C0.02&t=GS8L2txYQDLi8PEY-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A10372" target="_blank">打开原型</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="project-card">
+                  <div class="cover">
+                    <img src="assets/大黄山文创设计大赛——徽州三雕八宝瓶.png" alt="徽州三雕八宝瓶设计" />
+                  </div>
+                  <div class="project-info">
+                    <h4>徽州三雕八宝瓶文创设计</h4>
+                    <p>以徽州三雕与八宝瓶元素为核心的文创视觉设计，强调传统纹样重构、色彩搭配与文化表达。</p>
+                    <div class="project-tags">
+                      <span class="project-tag">文创设计</span>
+                      <span class="project-tag">视觉作品</span>
+                      <span class="project-tag">PNG</span>
+                    </div>
+                    <div class="project-actions">
+                      <a class="project-link" href="assets/大黄山文创设计大赛——徽州三雕八宝瓶.png" target="_blank">打开作品</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="project-card">
+                  <div class="cover">POSTER</div>
+                  <div class="project-info">
+                    <h4>海报与 Banner 设计集合</h4>
+                    <p>包含海报设计与 Banner 设计作品，适合补充你的平面视觉表达能力与风格广度。</p>
+                    <div class="project-tags">
+                      <span class="project-tag">海报</span>
+                      <span class="project-tag">Banner</span>
+                      <span class="project-tag">PDF</span>
+                    </div>
+                    <div class="project-actions">
+                      <a class="project-link" href="pdfs/海报-banner.pdf" target="_blank">打开 PDF</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="panel work-card">
+              <div class="work-top">
+                <div class="work-title">
+                  <h3>AI vibe coding</h3>
+                  <p>AI 工具、产品实验与快速原型。</p>
+                </div>
+                <div class="count-badge">02</div>
+              </div>
+
+              <div class="card-stack">
+                <article class="project-card">
+                  <div class="cover">AI TOOL</div>
+                  <div class="project-info">
+                    <h4>AI 产品痛点调研工具</h4>
+                    <p>聚合多平台评论并通过大模型自动分析用户痛点，输出结构化洞察，辅助产品决策。</p>
+                    <div class="project-tags">
+                      <span class="project-tag">AI</span>
+                      <span class="project-tag">数据分析</span>
+                      <span class="project-tag">Streamlit</span>
+                    </div>
+                    <div class="project-actions">
+                      <a class="project-link" href="https://appuct-pain-point-analyzer.streamlit.app/" target="_blank">打开在线 Demo</a>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="project-card">
+                  <div class="cover">RELATION</div>
+                  <div class="project-info">
+                    <h4>AI 关系模拟器</h4>
+                    <p>围绕人物关系模拟场景构建的交互 demo，可展示角色设定、对话输入与 AI 回复体验。</p>
+                    <div class="project-tags">
+                      <span class="project-tag">AI</span>
+                      <span class="project-tag">对话模拟</span>
+                      <span class="project-tag">Demo</span>
+                    </div>
+                    <div class="project-actions">
+                      <a class="project-link" href="https://relationship-simulation-zzv526v4qwnhg8g3phsaes.streamlit.app/" target="_blank">打开在线 Demo</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="panel work-card">
+              <div class="work-top">
+                <div class="work-title">
+                  <h3>音乐创作</h3>
+                  <p>原创音乐、个人作品页与更多自我表达。</p>
+                </div>
+                <div class="count-badge">03</div>
+              </div>
+
+              <div class="card-stack">
+                <article class="project-card">
+                  <div class="cover">MUSIC</div>
+                  <div class="project-info">
+                    <h4>网易云音乐作品页</h4>
+                    <p>用于展示我的音乐创作与个人表达内容，也让整个作品集保留更完整的个性维度。</p>
+                    <div class="project-tags">
+                      <span class="project-tag">原创音乐</span>
+                      <span class="project-tag">网易云</span>
+                    </div>
+                    <div class="project-actions">
+                      <a class="project-link" href="https://music.163.com/#/album?id=259898159" target="_blank">打开作品页</a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>这一版以温暖复古的基调呈现，让作品集看起来更亲和，也更像一个有个人气质的网站开场。</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
