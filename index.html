@@ -300,8 +300,7 @@
 
     .profile-card,
     .resume-card,
-    .work-card,
-    .embed-panel {
+    .work-card {
       padding: 28px;
     }
 
@@ -533,42 +532,6 @@
       background: rgba(185, 92, 59, 0.14);
     }
 
-    .embed-panel {
-      display: grid;
-      gap: 18px;
-    }
-
-    .embed-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      align-items: flex-end;
-    }
-
-    .embed-head h3 {
-      font-size: 1.4rem;
-      margin-bottom: 6px;
-    }
-
-    .embed-head p { color: var(--muted); }
-
-    .embed-frame {
-      width: 100%;
-      min-height: 860px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      overflow: hidden;
-      background: #f7f1e8;
-    }
-
-    .embed-frame iframe {
-      width: 100%;
-      height: 860px;
-      border: 0;
-      display: block;
-    }
-
     .footer {
       padding: 32px 0 56px;
       color: var(--muted);
@@ -588,16 +551,10 @@
       .hero-card,
       .profile-card,
       .resume-card,
-      .work-card,
-      .embed-panel { padding: 22px; }
+      .work-card { padding: 22px; }
       .project-card { grid-template-columns: 1fr; }
       .cover { aspect-ratio: 16 / 9; }
       .mini-grid { grid-template-columns: 1fr; }
-      .embed-frame,
-      .embed-frame iframe {
-        min-height: 70vh;
-        height: 70vh;
-      }
     }
   </style>
 </head>
@@ -808,7 +765,7 @@
             <div class="eyebrow">Works Overview</div>
             <h2>What do u want to know?</h2>
             <p>
-              这里我把内容分成三个方向：设计作品、AI vibe coding 和音乐创作。设计部分接入了 PDF 预览、Figma 原型嵌入与视觉作品展示，方便直接在网页内浏览。
+              这里我把内容分成三个方向：设计作品、AI vibe coding 和音乐创作。设计部分统一采用新窗口跳转方式，方便快速浏览不同类型项目。
             </p>
           </div>
 
@@ -847,10 +804,10 @@
                     <p>官网改版方向项目，适合展示企业官网的信息结构优化与视觉表达调整。</p>
                     <div class="project-tags">
                       <span class="project-tag">官网改版</span>
-                      <span class="project-tag">Figma 原型</span>
+                      <span class="project-tag">设计说明页</span>
                     </div>
                     <div class="project-actions">
-                      <a class="project-link" href="https://www.figma.com/proto/J7hneJGz3HR6E46xdOk2lm/%E7%BB%9F%E9%98%B2%E7%94%9F%E7%89%A9%E7%A7%91%E6%8A%80?page-id=0%3A1&node-id=151-2514&p=f&viewport=906%2C325%2C0.02&t=HBlaIyT6ixmTgIlc-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=151%3A2514" target="_blank">打开原型</a>
+                      <a class="project-link" href="cases/tongfang.html" target="_blank">打开作品</a>
                     </div>
                   </div>
                 </article>
@@ -998,7 +955,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p>这一版以温暖复古的基调呈现，让作品集看起来更亲和，也更像一个有个人气质的网站开场。</p>
+        <p>Vx：yyl20040607  E-mail：yangyuan40607@qq.com </p>
       </div>
     </footer>
   </div>
